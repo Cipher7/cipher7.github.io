@@ -4,11 +4,9 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-# About
-
 I am 21 year old Cybersecurity Researcher currently interested in learning Exploit Development and Reverse Engineering. I have previously worked with Network/WebApp Pentesting, Active Directory Audits, Red Teaming, and a bit of blue teaming. I would be publishing a few blogposts whenever I get time. 
 
-# Projects
+## Projects
 
 - [ApexLdr][1] : DLL Payload Loader
 - [ChaiLdr][2] : AV Evasive Payload Loader
@@ -16,7 +14,7 @@ I am 21 year old Cybersecurity Researcher currently interested in learning Explo
 - [havoc-SauronEye][4] : Havoc implementation of SauronEye
 - [dmenu_pentest][5] : Automate repetitive tasks while pentesting.
 
-# Certifications
+## Certifications
 
 - Offsec Exploit Developer ( OSED )
 - Offsec Certified Professional ( OSCP )
@@ -25,7 +23,7 @@ I am 21 year old Cybersecurity Researcher currently interested in learning Explo
 - Certified Red Team Professional ( CRTP )
 - eLearnSecurity Junior Penetration Tester ( eJPT )
 
-# Stats
+## Stats
 
 <style>
   .dynamic-images {
@@ -50,8 +48,11 @@ I am 21 year old Cybersecurity Researcher currently interested in learning Explo
   <img src="https://www.hackthebox.com/badge/image/306748" width="250" alt="HTB badge"/>
 </div>
 
+<br />
+
 ---
-NOTE : If you find any discrepencies/errors in the blog, both technical and grammar, kindly reach out on any of my social and I will rectify it.
+<br />
+**NOTE** : If you find any discrepencies/errors in the blog, both technical and grammar, kindly reach out on any of my social and I will rectify it.
 
 [1]: https://github.com/Cipher7/ApexLdr
 [2]: https://github.com/Cipher7/ChaiLdr
