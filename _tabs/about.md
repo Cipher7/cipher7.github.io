@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-I am 21 year old Cybersecurity Researcher currently interested in learning Exploit Development and Reverse Engineering. I have previously worked with Network/WebApp Pentesting, Active Directory Audits, Red Teaming, and a bit of blue teaming. I would be publishing a few blogposts whenever I get time. 
+I am 21 year old Cybersecurity Researcher currently interested in Exploit Development and Reverse Engineering. I have previously worked with Network/WebApp Pentesting, Active Directory Audits, Red Teaming, and a bit of Blue teaming. I would be publishing a few blogposts whenever I get time. 
 
 ## Projects
 
@@ -49,9 +49,8 @@ I am 21 year old Cybersecurity Researcher currently interested in learning Explo
 </div>
 
 <br />
-
----
 <br />
+
 **NOTE** : If you find any discrepencies/errors in the blog, both technical and grammar, kindly reach out on any of my social and I will rectify it.
 
 [1]: https://github.com/Cipher7/ApexLdr
