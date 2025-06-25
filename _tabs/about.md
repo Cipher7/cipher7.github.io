@@ -44,8 +44,8 @@ I am 21 year old Cybersecurity Researcher currently interested in Exploit Develo
 </style>
 
 <div class="dynamic-images">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/Cipher007.png" width="250" alt="THM badge" />
-  <img src="https://www.hackthebox.com/badge/image/306748" width="250" alt="HTB badge"/>
+  <img src="https://tryhackme-badges.s3.amazonaws.com/Cipher007.png" width="300" alt="THM badge" />
+  <img src="https://www.hackthebox.com/badge/image/306748" width="300" alt="HTB badge"/>
 </div>
 
 <br />
