@@ -50,6 +50,7 @@ I am 21 year old Cybersecurity Researcher currently interested in Exploit Develo
 
 <br />
 <br />
+<br />
 
 **NOTE** : If you find any discrepencies/errors in the blog, both technical and grammar, kindly reach out on any of my social and I will rectify it.
 
