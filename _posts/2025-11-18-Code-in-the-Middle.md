@@ -1,7 +1,7 @@
 ---
 title: 'Code-in-the-Middle : An Introduction to IR'
 author: cipher007
-date: 2025-11-1 21:00:00 -0400
+date: 2025-11-1 23:30:00 -0400
 categories: [Red Teaming]
 tags: [redteam, Intermediate Representation, EDR] 
 media-subpath: /assets/img/citm/
@@ -646,7 +646,7 @@ With respect to static detection bypasses, making detections for IR files is rea
 
 ![image.png](/assets/img/citm/image%201.png)
 
-Additionally, you can analyze the case files from my elastic security export [here](/assets/files/README.md)
+Additionally, you can analyze the case files from my elastic security export [here](/assets/files/citm-elastic-cases-export.ndjson)
 
 ## But why use IR?
 
