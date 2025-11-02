@@ -3,7 +3,7 @@ title: 'Code-in-the-Middle : An Introduction to IR'
 author: cipher007
 date: 2025-10-18 12:00:00 -0400
 categories: [Red Teaming]
-tags: [redteam] 
+tags: [redteam, Intermediate Representation, EDR] 
 media-subpath: /assets/img/citm/
 ---
 
@@ -49,18 +49,18 @@ These were all really cool concepts where source code could be obfuscated during
 Here are some research findings done which clearly states how binaries obfuscated during compilation survived reversing and other analysis better than obfuscations applied directly at source level.
 
 1. **Madou et al. (2006)**: First empirical demonstration that source-level protections don't survive compilation—compilers optimize away many obfuscations.
-[https://www.researchgate.net/publication/221610193_On_the_Effectiveness_of_Source_Code_Transformations_for_Binary_Obfuscation](https://www.researchgate.net/publication/221610193_On_the_Effectiveness_of_Source_Code_Transformations_for_Binary_Obfuscation)
+[link](https://www.researchgate.net/publication/221610193_On_the_Effectiveness_of_Source_Code_Transformations_for_Binary_Obfuscation)
 2. **Obfuscator-LLVM Study (2015)**: Demonstrated compile-time protection feasibility by applying obfuscations *after* optimization passes but *within* compilation pipeline
-[https://crypto.junod.info/spro15.pdf](https://crypto.junod.info/spro15.pdf)
+[link](https://crypto.junod.info/spro15.pdf)
 3. **Tigress vs. OLLVM Analysis**: Source-to-source transformations (Tigress) vs. IR-level transformations (OLLVM) showed IR-level techniques survive better.
-[https://eprints.cs.univie.ac.at/7811/1/camera_ready.pdf](https://eprints.cs.univie.ac.at/7811/1/camera_ready.pdf)
-[https://tigress.wtf/index.html](https://tigress.wtf/index.html)
+[link](https://eprints.cs.univie.ac.at/7811/1/camera_ready.pdf) &
+[Tigress C obfuscator](https://tigress.wtf/index.html)
 
 But our primary goal is bypassing EDRs and security solutions.
 
 All of these techniques applied by LLVM does seem very fun and it has been integrated into many tools - AdaptixC2, Covenant C2, multiple reflective loaders, OffensiveRust etc. All these are popular and widely used, but there is still something lacking in this type of implementation.
 
-The current implementation focuses on obfuscating the malware itself, although this sounds like exactly what is intended of LLVM, the detection rates are still high. Research by **Christopher Paschen of TrustedSec [**[https://trustedsec.com/blog/behind-the-code-assessing-public-compile-time-obfuscators-for-enhanced-opsec](https://trustedsec.com/blog/behind-the-code-assessing-public-compile-time-obfuscators-for-enhanced-opsec)**]** does an in-depth comparison of how conventional payloads and llvm compiled payloads perform in evading detections. 
+The current implementation focuses on obfuscating the malware itself, although this sounds like exactly what is intended of LLVM, the detection rates are still high. [Research](https://trustedsec.com/blog/behind-the-code-assessing-public-compile-time-obfuscators-for-enhanced-opsec) by **Christopher Paschen of TrustedSec** does an in-depth comparison of how conventional payloads and llvm compiled payloads perform in evading detections. 
 
 This is what he says -
 > ”I do not feel that adding LLVM obfuscation passes meaningfully impacts the detection ratio of native executables when considering disk scanning. It is entirely possible that when attempting to avoid a known signature use of LLVM obfuscation, passes could be effectively deployed to modify the machine code in such a way that either disk or memory-based scans would be defeated. I’m now of the opinion that if you want/need to use a technique and you know there are specific detections in place, then modifying the bad code manually is largely effective.”
@@ -69,8 +69,6 @@ This is what he says -
 
 <br>
 <br>
-
-![image.png](/assets/img/citm/image%201.png)
 
 ## Core Idea : Evasion using IR
 
@@ -150,7 +148,6 @@ Image Credit: Palo Alto Networks
 ![image.png](/assets/img/citm/image%206.png)
 Image Credits : Broadcom
 
-<br>
 ## Core Telemetry Sources
 
 ### Userland API Hooking
@@ -174,9 +171,10 @@ Now this means that these hooks can essentially be removed, and also the EDR mus
 
 EDR can subscribe to kernel-level notifications for process creation, thread spawning, image loading, and other operations, EDR drivers gain a privileged vantage point that is significantly more difficult to evade than user-mode hooks. Kernel callbacks are **notification subscription mechanisms** that allow kernel-mode drivers to register functions that the Windows kernel automatically invokes when specific system events occur.
 
-This concept has the best metaphorical understanding given by : [https://www.100daysofredteam.com/p/quick-introduction-to-kernel-callbacks-red-team](https://www.100daysofredteam.com/p/quick-introduction-to-kernel-callbacks-red-team)
+This concept has the best metaphorical understanding given by : [Uday Mittal](https://www.100daysofredteam.com/p/quick-introduction-to-kernel-callbacks-red-team)
 
-“Think of kernel callbacks as subscribers to system events—just like how people subscribe to notifications from a YouTube channel. When an event occurs (such as a new video being uploaded), the subscribers (kernel callbacks) are notified and can take action.”
+> “Think of kernel callbacks as subscribers to system events—just like how people subscribe to notifications from a YouTube channel. When an event occurs (such as a new video being uploaded), the subscribers (kernel callbacks) are notified and can take action.”
+> <p style="text-align:right">-Uday Mittal</p>
 
 Characteristics : 
 
@@ -527,7 +525,6 @@ entry:
 
 We can see that most of the dead code is eliminated as compared to what was there in `example.ll` . The call to the function is made as before and then 0 is returned from the main function.
 
-<br>
 
 # The power of IR for Offensive Tooling
 
@@ -554,7 +551,6 @@ We can see that most of the dead code is eliminated as compared to what was ther
 - For offensive tooling, combining IR-based payloads with obfuscation with LOTL execution can make attacks highly stealthy: minimal new binaries dropped, or the binary behaves like a trusted system tool, or you load payload in memory via existing binary.
 - This is what the crux of this blog is about! Using `lli.exe` to directly execute payloads which are in IR format rather than executables.
 
-<br>
 
 # Evasion at IR level
 
@@ -644,13 +640,15 @@ Okay something you should **DEFINETELY NOT** do in a red team assessment (horrib
 
 ![image.png](/assets/img/citm/image%2019.png)
 
-## Detections
+## Detections and Verdict
 
 In terms of bypassing Windows Defender, it does it beautifully. But an EDR like elastic? That is highly unlikey to occur. Main reason is that regardless of how obfuscated the binary is, the actions it performs play a major role. You can have the most sophisticated encrypted binary, but if it just performs a basic process injection that beats the purpose of Opsec.
 
-Statically, making detections for IR files is really hard, the sigatures change between generation of the same payload, reversing of the binary becomes hard due to LLVM doing its thing and all this is good in terms of not getting your binary detected. But sadly the actions performed by the binary will be detected for sure, so the verdict is amazing static detection bypass and not a very good dynamic detection bypass.
+With respect to static detection bypasses, making detections for IR files is really hard, the sigatures change between generation of the same payload, reversing of the binary becomes hard due to LLVM doing its thing and all this is good in terms of not getting your binary detected. But sadly the actions performed by the IR file will be detected for sure, so the **verdict** is amazing static detection bypass and not a very good dynamic detection bypass.
 
 ![image.png](/assets/img/citm/image%2020.png)
+
+![image.png](/assets/img/citm/image%201.png)
 
 ## But why use IR?
 
