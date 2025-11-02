@@ -1,7 +1,7 @@
 ---
 title: 'Code-in-the-Middle : An Introduction to IR'
 author: cipher007
-date: 2025-10-18 12:00:00 -0400
+date: 2025-11-1 21:00:00 -0400
 categories: [Red Teaming]
 tags: [redteam, Intermediate Representation, EDR] 
 media-subpath: /assets/img/citm/
@@ -66,9 +66,6 @@ This is what he says -
 > ”I do not feel that adding LLVM obfuscation passes meaningfully impacts the detection ratio of native executables when considering disk scanning. It is entirely possible that when attempting to avoid a known signature use of LLVM obfuscation, passes could be effectively deployed to modify the machine code in such a way that either disk or memory-based scans would be defeated. I’m now of the opinion that if you want/need to use a technique and you know there are specific detections in place, then modifying the bad code manually is largely effective.”
 >
 > <p style="text-align:right">-Christopher Paschen</p>
-
-<br>
-<br>
 
 ## Core Idea : Evasion using IR
 
@@ -163,9 +160,8 @@ This forced EDR vendors to move their monitoring capabilities from kernel mode t
 ![image.png](/assets/img/citm/image%207.png)
 Image Credit : Anthony J - Xsec 
 
-Now this means that these hooks can essentially be removed, and also the EDR must hook every new process and also inject its own DLL into every new process so that it can get an insight into what the process is even doing. 
+Now this means that these hooks can essentially be removed, and also the EDR must hook every new process and also inject its own DLL into every new process so that it can get an insight into what the process is even doing and redirect API calls.
 
-[ Image of Elastic Security injected DLL in a process ]
 
 ### Kernel callbacks
 
@@ -652,6 +648,6 @@ With respect to static detection bypasses, making detections for IR files is rea
 
 ## But why use IR?
 
-The IR files dropped onto the disk were not flagged regardless of it being malicious. This observation has been consistent with different EDR products. Even after executing, it treats `lli.exe`  and the whichever process gets injected as malicious but not the IR file itself, although it is shown in the artifacts of execution, there is no indication of the file being classified as inherently malicious. This is again because `lli.exe`is responsible for interpreting the file, so all actions are performed by `lli.exe` . 
+The IR files dropped onto the disk were not flagged regardless of it being malicious. This observation has been consistent with different EDR products. Even after executing, it treats `lli.exe`  and the whichever process gets injected as malicious but not the IR file itself, although it is shown in the artifacts of execution, there is no indication of the file being classified as inherently malicious. This is again because `lli.exe` is responsible for interpreting the file, so all actions are performed by `lli.exe` . 
 
-The main point of looking into IR files for evasion pupose is that malware developers can focus more on evading dynamic detections by using sandbox evasions, sleep techniques, newer and lesser detected process injection techniques and being more vigilant on what the loader does without focusing on the static detection bypasses as that can easily be done with `IRvana`. You do not need to worry about plaintext strings or any other artifacts in your code which can easily be signatured, you can shift your focus towards building better malware in terms of what it does exactly.
+The main point of looking into IR files for evasion pupose is that malware developers can focus more on evading dynamic detections by using sandbox evasions, sleep techniques, newer and lesser detected process injection techniques and being more vigilant on what the loader does without focusing on the static detection bypasses as that can easily be done with `IRvana`. You do not need to worry about plaintext strings or any other artifacts in your code which can easily be signatured, you can shift your focus towards building better malware.
