@@ -1,0 +1,1 @@
+This folder contains additional assets like config files, case files and other data
