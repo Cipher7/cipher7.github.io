@@ -640,11 +640,13 @@ Okay something you should **DEFINETELY NOT** do in a red team assessment (horrib
 
 In terms of bypassing Windows Defender, it does it beautifully. But an EDR like elastic? That is highly unlikey to occur. Main reason is that regardless of how obfuscated the binary is, the actions it performs play a major role. You can have the most sophisticated encrypted binary, but if it just performs a basic process injection that beats the purpose of Opsec.
 
-With respect to static detection bypasses, making detections for IR files is really hard, the sigatures change between generation of the same payload, reversing of the binary becomes hard due to LLVM doing its thing and all this is good in terms of not getting your binary detected. But sadly the actions performed by the IR file will be detected for sure, so the **verdict** is amazing static detection bypass and not a very good dynamic detection bypass.
+With respect to static detection bypasses, making detections for IR files is really hard, the sigatures change between generation of the same payload, reversing of the binary becomes hard due to LLVM doing its thing and all this is good in terms of not getting your binary detected. But sadly the actions performed by the IR file will be detected for sure, so the **verdict** is amazing static detection bypass and not a very good dynamic detection bypass. 
 
 ![image.png](/assets/img/citm/image%2020.png)
 
 ![image.png](/assets/img/citm/image%201.png)
+
+Additionally, you can analyze the case files from my elastic security export [here](/assets/files/README.md)
 
 ## But why use IR?
 
