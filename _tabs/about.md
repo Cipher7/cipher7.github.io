@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-I am 21 year old Cybersecurity Researcher currently interested in Exploit Development and Reverse Engineering. I have previously worked with Network/WebApp Pentesting, Active Directory Audits, Red Teaming, and a bit of Blue teaming. I would be publishing a few blogposts whenever I get time. 
+I am 22 year old Cybersecurity Researcher currently interested in Exploit Development and Reverse Engineering. I have previously worked with Network/WebApp Pentesting, Active Directory Audits, Red Teaming, and a bit of Blue teaming. I would be publishing a few blogposts whenever I get time. 
 
 ## Projects
 
